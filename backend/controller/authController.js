@@ -38,7 +38,7 @@ export const signup = async (req, res) => {
     //   return res.status(400).json({ message: "Email already exists" });
     // }
 
-    //Hash the  password, with salt(random string gets added before the hashed string) - so that if your data gets leaked the password cannot be found
+    //Hash the  password, with salt(random string gets added before the hashed string) - so that if your data gets leaked the password cannot be found in plain text
     const hashedPass = await bcrypt.hash(password, 10);
 
     //Create and save new user
@@ -50,7 +50,7 @@ export const signup = async (req, res) => {
     });
     await newUser.save();
 
-    //Generate token and set cookie
+    //Generate token and set cookie - Here we are passing the newUser Id which would be the payload for the jwt and later when we deocde the jwt we would be fetching the whole user from the DB using the findById(), and sending a cookie in return 
     generateTokenAndSetCookie(newUser._id, res);
 
     //Returning success response
