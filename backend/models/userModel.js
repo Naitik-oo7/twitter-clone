@@ -20,6 +20,13 @@ const userSchema = new mongoose.Schema(
         default: [],
       },
     ],
+    likedPosts: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Post",    
+        default: [],
+      },
+    ],
     bio: { type: String, default: "" },
     profileImg: { type: String, default: "" },
     coverImg: { type: String, default: "" },
