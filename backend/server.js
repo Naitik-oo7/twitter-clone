@@ -21,13 +21,13 @@ cloudinary.config({
 const app = express();
 const PORT = process.env.PORT;
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true })); //to parse form data url encoded
+app.use(express.json({ limit: "10mb" }));
+app.use(express.urlencoded({ extended: true , limit: "10mb"})); //to parse form data url encoded
 app.use(cookieParser());
 
 app.use("/api/auth", authRouter);
-app.use("/api/user", userRouter);
-app.use("/api/post", postRouter);
+app.use("/api/users", userRouter);
+app.use("/api/posts", postRouter);
 app.use("/api/notifications", notificationRouter);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

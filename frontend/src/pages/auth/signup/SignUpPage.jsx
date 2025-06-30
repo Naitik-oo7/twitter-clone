@@ -9,6 +9,8 @@ import { MdPassword } from "react-icons/md";
 import { MdDriveFileRenameOutline } from "react-icons/md";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
 
 const SignUpPage = () => {
   const [formData, setFormData] = useState({
@@ -17,6 +19,8 @@ const SignUpPage = () => {
     fullName: "",
     password: "",
   });
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,10 +52,11 @@ const SignUpPage = () => {
 
       return data;
     },
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       toast.success("Account created successfully!");
       console.log(data);
-      // optionally redirect or reset form here
+      await queryClient.invalidateQueries({ queryKey: ["authUser"] });
+      navigate("/");
     },
   });
 

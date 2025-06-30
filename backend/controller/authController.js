@@ -2,39 +2,7 @@ import User from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import { generateTokenAndSetCookie } from "../utils/lib/generateToken.js";
 
-export const suignup = async (req, res) => {
-  try {
-    const { username, email, password, fullName } = req.body;
-    if (!username || !email || !password || !fullName) {
-      return res.json("all fields required");
-    }
 
-    const existingUser = await User.findOne({
-      $or: [{ username }, { email }],
-    });
-    if (existingUser.username) {
-      if (existingUser.username) {
-        return res.json({ message: "Username already exists" });
-      }
-      if (existingUser.email) {
-        return res.json({ message: "email already exists" });
-      }
-    }
-
-    const hashP = await bcrypt.hash(password, 10);
-
-    const user = new User({
-      username,
-      email,
-      fullName,
-      password: hashP,
-    });
-    await user.save();
-
-    const cookie = generateTokenAndSetCookie(userId, res);
-    res.json(cookie, "sign up done");
-  } catch (error) {}
-};
 
 export const signup = async (req, res) => {
   try {
