@@ -7,7 +7,6 @@ import {
   updateUser,
 } from "../controller/userController.js";
 const router = express.Router();
-const app = express();
 router.use(protectRoute);
 
 router.get("/profile/:username", getUserProfile);
