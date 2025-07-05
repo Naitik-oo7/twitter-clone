@@ -72,8 +72,8 @@ const ProfilePage = () => {
     if (file) {
       const reader = new FileReader();
       reader.onload = () => {
-        state === "coverImg" && setCoverImg(reader.result);
-        state === "profileImg" && setProfileImg(reader.result);
+        state === "coverImg" && setCoverImg(reader?.result);
+        state === "profileImg" && setProfileImg(reader?.result);
       };
       reader.readAsDataURL(file);
     }
@@ -100,7 +100,9 @@ const ProfilePage = () => {
                 </Link>
                 <div className="flex flex-col">
                   <p className="font-bold text-lg">{user?.fullName}</p>
-                  <span className="text-sm text-slate-500">{POSTS?.length} posts</span>
+                  <span className="text-sm text-slate-500">
+                    {POSTS?.length} posts
+                  </span>
                 </div>
               </div>
 
@@ -135,7 +137,11 @@ const ProfilePage = () => {
                 <div className="avatar absolute -bottom-16 left-4">
                   <div className="w-32 rounded-full relative group/avatar">
                     <img
-                      src={profileImg || user?.profileImg || "/avatar-placeholder.png"}
+                      src={
+                        profileImg ||
+                        user?.profileImg ||
+                        "/avatar-placeholder.png"
+                      }
                       alt="avatar"
                     />
                     {isMyProfile && (
@@ -157,7 +163,11 @@ const ProfilePage = () => {
                     className="btn btn-outline rounded-full btn-sm"
                     onClick={() => follow(user?._id)}
                   >
-                    {isPending ? "Loading..." : amIFollowing ? "Unfollow" : "Follow"}
+                    {isPending
+                      ? "Loading..."
+                      : amIFollowing
+                      ? "Unfollow"
+                      : "Follow"}
                   </button>
                 )}
                 {(coverImg || profileImg) && (
@@ -177,7 +187,9 @@ const ProfilePage = () => {
               <div className="flex flex-col gap-4 mt-14 px-4">
                 <div className="flex flex-col">
                   <span className="font-bold text-lg">{user?.fullName}</span>
-                  <span className="text-sm text-slate-500">@{user?.username}</span>
+                  <span className="text-sm text-slate-500">
+                    @{user?.username}
+                  </span>
                   <span className="text-sm my-1">{user?.bio}</span>
                 </div>
 
@@ -197,17 +209,23 @@ const ProfilePage = () => {
                   )}
                   <div className="flex gap-2 items-center">
                     <IoCalendarOutline className="w-4 h-4 text-slate-500" />
-                    <span className="text-sm text-slate-500">{memberSinceDate}</span>
+                    <span className="text-sm text-slate-500">
+                      {memberSinceDate}
+                    </span>
                   </div>
                 </div>
 
                 <div className="flex gap-2">
                   <div className="flex gap-1 items-center">
-                    <span className="font-bold text-xs">{user?.following.length}</span>
+                    <span className="font-bold text-xs">
+                      {user?.following.length}
+                    </span>
                     <span className="text-slate-500 text-xs">Following</span>
                   </div>
                   <div className="flex gap-1 items-center">
-                    <span className="font-bold text-xs">{user?.followers.length}</span>
+                    <span className="font-bold text-xs">
+                      {user?.followers.length}
+                    </span>
                     <span className="text-slate-500 text-xs">Followers</span>
                   </div>
                 </div>

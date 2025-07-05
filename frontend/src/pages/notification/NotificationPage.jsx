@@ -16,7 +16,7 @@ const NotificationPage = () => {
       const res = await fetch("/api/notifications");
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Something went wrong");
-      return data.notifications; 
+      return data.notifications;
     },
   });
 
@@ -84,7 +84,7 @@ const NotificationPage = () => {
                   <div className="w-8 rounded-full">
                     <img
                       src={
-                        notification.from.profileImg ||
+                        notification?.from?.profileImg ||
                         "/avatar-placeholder.png"
                       }
                     />
