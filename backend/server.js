@@ -38,11 +38,12 @@ app.use("/api/users", userRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/notifications", notificationRouter);
 
+console.log("Dumping all registered route paths:");
 app._router.stack.forEach(layer => {
   if (layer.route) {
-    console.log('Route path:', layer.route.path);
-  } else if (layer.name === 'router') {
-    console.log('Router middleware regexp:', layer.regexp);
+    console.log("Route path:", layer.route.path);
+  } else if (layer.name === "router") {
+    console.log("Router middleware regexp:", layer.regexp);
   }
 });
 
