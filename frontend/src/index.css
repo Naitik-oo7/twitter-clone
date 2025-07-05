@@ -6,3 +6,7 @@ html, body {
   background-color: #000000;
 }
 
+:root {
+  --color-primary: #1DA1F2 !important;
+  --color-secondary-content: #ffffff !important;
+}

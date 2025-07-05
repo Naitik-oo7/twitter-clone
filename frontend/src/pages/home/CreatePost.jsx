@@ -82,14 +82,14 @@ const CreatePost = () => {
   return (
     <div className="flex p-4 items-start gap-4 border-b border-gray-700">
       <div className="avatar">
-        <div className="w-8 rounded-full">
+        <div className="w-10 rounded-full">
           <img src={authUser?.profileImg || "/avatar-placeholder.png"} />
         </div>
       </div>
 
       <form className="flex flex-col gap-2 w-full" onSubmit={handleSubmit}>
         <textarea
-          className="textarea w-full p-0 text-lg resize-none border-none focus:outline-none  border-gray-800"
+          className="textarea bg-transparent w-full p-2 text-lg resize-none border-none focus:outline-none  border-gray-800"
           placeholder="What is happening?!"
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -131,7 +131,7 @@ const CreatePost = () => {
 
           <button
             type="submit"
-            className="btn btn-primary rounded-full btn-sm text-white px-4"
+            className="btn btn-primary rounded-full btn-md text-white px-4 text-lg"
             disabled={isPending}
           >
             {isPending ? "Posting..." : "Post"}

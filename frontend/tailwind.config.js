@@ -1,5 +1,5 @@
-/** @type {import('tailwindcss').Config} */
 import daisyui from "daisyui";
+
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
@@ -9,20 +9,16 @@ export default {
   daisyui: {
     themes: [
       {
-        myblacktheme: {
-          primary: "#FF6363",
-          secondary: "#000000",
-          accent: "#000000",
-          neutral: "#000000",
+        myblack: {
+          primary: "#ffffff",
+          "primary-content": "#000000",
+          secondary: "#1DA1F2", // Twitter Blue
+          "secondary-content": "#ffffff",
+          accent: "#37CDBE",
           "base-100": "#000000",
-          "base-content": "#ffffff", // white text
-          info: "#3ABFF8",
-          success: "#36D399",
-          warning: "#FBBD23",
-          error: "#F87272",
+          "base-content": "#ffffff",
         },
       },
     ],
-    defaultTheme: "myblacktheme",
   },
 };
